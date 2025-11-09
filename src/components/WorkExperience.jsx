@@ -1,20 +1,37 @@
-export default function educationalExperience() {
+import { useState } from 'react'
+
+export default function workExperience({ edit }) {
+    
+        const [formData, setFormData] = useState({
+            companyName: '',
+            position: '',
+            responsibilities: '',
+            startDate: '',
+            endDate: ''
+        })
+        function handleChange(e) {
+            setFormData({
+                ...formData,
+                [e.target.name]: e.target.value
+            })
+        }
     return (
         <>
-            <label for="companyName">Company Name: </label>
-            <input type="text" id="companyName" name="companyName"></input>
+            <label htmlFor="companyName">Company Name: </label>
+            {edit ? (<input type="text" name="companyName" className="drop-shadow-md border-2 border-grey" id="companyName" value={formData.companyName} onChange={handleChange}></input>) : (<span>{formData.companyName}</span>)}
             <br></br>
-            <label for="position">Position: </label>
-            <input type="text" id="position" name="position"></input>
+            <label htmlFor="position">Position: </label>
+            {edit ? (<input type="text" name="position" id="position" className="drop-shadow-md border-2 border-grey" value={formData.position} onChange={handleChange}></input>) : (<span>{formData.position}</span>)}
             <br></br>
-            <label for="responsibilities">Responsibilities: </label>
-            <input type="text" id="responsibilities" name="responsibilities"></input>
+            <label htmlFor="responsibilities">Responsibilities: </label>
+            {edit ? (<input type="text" name="responsibilities" className="drop-shadow-md border-2 border-grey" id="responsibilities" value={formData.responsibilities} onChange={handleChange}></input>) : (<span>{formData.responsibilities}</span>)}
             <br></br>
-            <label for="startDate">Start Date: </label>
-            <input type="date" id="startDate" name="startDate"></input>
             <br></br>
-            <label for="endDate">End Date: </label>
-            <input type="date" id="endDate" name="endDate"></input>
+            <label htmlFor="startDate">Start Date: </label>
+            {edit ? (<input type="date" name="startDate" id="startDate" className="drop-shadow-md border-2 border-grey" value={formData.startDate} onChange={handleChange}></input>) : (<span>{formData.startDate}</span>)}
+            <br></br>
+            <label htmlFor="endDate">End Date: </label>
+            {edit ? (<input type="date" name="endDate" id="endDate" className="drop-shadow-md border-2 border-grey" value={formData.endDate} onChange={handleChange}></input>) : (<span>{formData.endDate}</span>)}
         </>
     )
 }

@@ -1,17 +1,34 @@
-export default function educationalExperience() {
+import { useState } from 'react'
+
+export default function educationalExperience({edit}) {
+
+    const [formData, setFormData] = useState({
+        schoolName: '',
+        major: '',
+        startDate: '',
+        endDate: ''
+    })
+    function handleChange(e) {
+        setFormData({
+            ...formData,
+            [e.target.name]: e.target.value
+        })
+    }
+    
     return (
         <>
-            <label for="schoolName">School Name: </label>
-            <input type="text" id="schoolName" name="schoolName"></input>
+            <label htmlFor="schoolName">School Name: </label>
+            { edit ? (<input type="text" name= "schoolName" className="drop-shadow-md border-2 border-grey" id="schoolName" value={ formData.schoolName} onChange={handleChange}></input>) : (<span>{formData.schoolName}</span>)}
             <br></br>
-            <label for="major">Major: </label>
-            <input type="text" id="major" name="major"></input>
+            <label htmlFor="major">Major: </label>
+            { edit ? (<input type="text" name= "major" id="major" className="drop-shadow-md border-2 border-grey" value={ formData.major} onChange={handleChange}></input>) : (<span>{formData.major}</span>)}
             <br></br>
-            <label for="startDate">Start Date: </label>
-            <input type="date" id="startDate" name="startDate"></input>
             <br></br>
-            <label for="endDate">End Date: </label>
-            <input type="date" id="endDate" name="endDate"></input>
+            <label htmlFor="startDate">Start Date: </label>
+            { edit ? (<input type="date" name= "startDate" className="drop-shadow-md border-2 border-grey" id="startDate" value={ formData.startDate} onChange={handleChange}></input>) : (<span>{formData.startDate}</span>)}
+            <br></br>
+            <label htmlhtmlFor="endDate">End Date: </label>
+            { edit ? (<input type="date" name= "endDate" className="drop-shadow-md border-2 border-grey" id="endDate" value={ formData.endDate} onChange={handleChange}></input>) : (<span>{formData.endDate}</span>)}
         </>
     )
 }
